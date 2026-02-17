@@ -1,0 +1,35 @@
+# =============================================================
+# .dockerignore — File esclusi dalla build Docker
+# Riduce la dimensione del contesto e previene leak di segreti
+# =============================================================
+
+# Credenziali (CRITICO)
+.env
+.env.example
+
+# Git
+.git/
+.gitignore
+
+# Ambienti virtuali
+.venv/
+venv/
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Dati locali (montati come volume)
+data/
+!data/.keep
+
+# Documentazione e file inutili per il container
+*.md
+LICENSE
+
+# IDE
+.idea/
+.vscode/
+
+# Cartella src vecchia (se esiste ancora)
+src/

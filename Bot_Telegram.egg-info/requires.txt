@@ -1,0 +1,8 @@
+aiogram
+tinydb
+python-dotenv
+cryptography
+
+[dev]
+pre-commit
+ruff

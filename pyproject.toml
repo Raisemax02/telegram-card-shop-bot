@@ -1,0 +1,83 @@
+# ==============================================================================
+# PROJECT CONFIGURATION & STANDARDS COMPLIANCE
+# ==============================================================================
+# This configuration file complies with the following Python Standards:
+# 1. PEP 518 & PEP 517: Build system (setuptools).
+# 2. PEP 621: Static project metadata.
+# 3. PEP 440: Versioning (~= compatible release).
+# 4. PEP 508: Dependency specification.
+# 5. PEP 8: Enforced via Ruff.
+# ==============================================================================
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# ==============================================================================
+# PROJECT METADATA (PEP 621)
+# ==============================================================================
+[project]
+name = "Bot_Telegram"
+version = "1.0.0"
+description = "Bot Telegram"
+readme = "README.md"
+# Supports 3.12.x and 3.14.x
+requires-python = ">=3.12, <3.15"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.14",
+]
+
+# ==============================================================================
+# DEPENDENCIES
+# ==============================================================================
+# Core Dependencies
+dependencies = [
+    "aiogram",
+    "tinydb",
+    "pyyaml",
+    "python-dotenv",
+    "cryptography"
+]
+
+# Development Tools
+[project.optional-dependencies]
+dev = [
+    "pre-commit",
+    "ruff",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+
+# ==============================================================================
+# TOOL CONFIGURATION: RUFF
+# ==============================================================================
+[tool.ruff]
+# Lowest supported version to prevent crashes on older envs
+target-version = "py312"
+line-length = 120
+fix = true
+
+exclude = [
+    ".git", ".venv", ".vscode", "data", "logs",
+    "__pycache__", "tools",
+]
+
+[tool.ruff.lint]
+# Active Rule Sets: E, W, F (Standard), I (Imports), B (Bugbear),
+# UP (Upgrade), SIM (Simplify), C4 (Comprehensions), DTZ (Datetime),
+# TID (Tidy imports), S (Security), N (Naming)
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "C4", "DTZ", "TID", "S", "N"]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+combine-as-imports = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true

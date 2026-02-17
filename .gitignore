@@ -1,0 +1,35 @@
+# =============================================================
+# .gitignore — File/cartelle da NON caricare su Git
+# =============================================================
+
+# Credenziali (CRITICO: mai caricare!)
+.env
+
+# Ambienti virtuali Python
+.venv/
+venv/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Cartella dati (contiene il database e i backup)
+data/
+!data/.keep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Git
+.git/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Docker build output
+*.tar

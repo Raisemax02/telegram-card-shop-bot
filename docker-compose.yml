@@ -1,0 +1,39 @@
+# =============================================================
+# Docker Compose — Telegram Card Shop Bot
+# =============================================================
+# Start:  docker compose up -d --build
+# Stop:   docker compose down
+# Logs:   docker compose logs -f bot
+# =============================================================
+
+services:
+  bot:
+    build: .
+    container_name: telegram-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Mount data and logs directories to persist on host disk
+      - ./data:/app/data
+      - ./logs:/app/logs
+    networks:
+      - bot_net
+    # Resource limits (security: prevent excessive consumption)
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
+    # Limited logging to avoid filling disk
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Clean stop signal for the bot
+    stop_grace_period: 10s
+
+networks:
+  bot_net:
+    driver: bridge
